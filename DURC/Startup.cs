@@ -42,7 +42,13 @@ namespace DURC
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services
+                .AddDefaultIdentity<IdentityUser>(options =>
+                    {
+                        options.Password.RequireNonAlphanumeric = false;
+                        options.Password.RequireLowercase = false;
+                        options.Password.RequireUppercase = false;
+                    })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<IClienteService, ClienteService>();

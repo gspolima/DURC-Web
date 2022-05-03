@@ -1,5 +1,6 @@
 ﻿using DURC.Data.Services;
 using DURC.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace DURC.Controllers
 {
+    [Authorize]
     public class ClienteController : Controller
     {
         public IClienteService ClienteService { get; set; }
