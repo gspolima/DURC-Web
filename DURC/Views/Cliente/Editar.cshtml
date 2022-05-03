@@ -1,0 +1,54 @@
+﻿@model DURC.Models.Cliente
+
+@{
+    ViewData["Title"] = "Editar Cliente";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<h2>Editar Cliente</h2>
+
+<form asp-controller="Cliente" asp-action="Editar" method="post">
+    <div class="form-group">
+        <label asp-for="Id">Id</label>
+        <input readonly asp-for="Id" type="number" class="form-control">
+    </div>
+    <div class="form-group">
+        <label asp-for="CPF">CPF</label>
+        <input readonly asp-for="CPF" type="number" class="form-control">
+    </div>
+    <div class="form-group">
+        <label asp-for="Nome">Nome</label>
+        <input asp-for="Nome" type="text" class="form-control" placeholder="José da Silva">
+    </div>
+    <div class="form-group">
+        <label asp-for="Telefone">Telefone</label>
+        <input asp-for="Telefone" type="number" class="form-control" placeholder="85987320165">
+        <small class="form-text text-muted">Somente números</small>
+    </div>
+    <hr />
+
+    <h4>Endereço</h4>
+    <div class="form-group">
+        <label asp-for="Enderecos.FirstOrDefault().Logradouro">Logradouro</label>
+        <input asp-for="Enderecos.FirstOrDefault().Logradouro" type="text" class="form-control" placeholder="Rua das Rosas">
+    </div>
+    <div class="form-group">
+        <label asp-for="Enderecos.FirstOrDefault().Numero">Número</label>
+        <input asp-for="Enderecos.FirstOrDefault().Numero" type="number" class="form-control" placeholder="420">
+    </div>
+    <div class="form-group">
+        <label asp-for="Enderecos.FirstOrDefault().Bairro">Bairro</label>
+        <input asp-for="Enderecos.FirstOrDefault().Bairro" type="text" class="form-control" placeholder="Jardim Tropical">
+    </div>
+    <div class="form-group">
+        <label asp-for="Enderecos.FirstOrDefault().Cidade">Cidade</label>
+        <input asp-for="Enderecos.FirstOrDefault().Cidade" type="text" class="form-control" placeholder="Maranguape">
+    </div>
+    <div class="form-group">
+        <label asp-for="Enderecos.FirstOrDefault().Estado">Estado</label>
+        <input asp-for="Enderecos.FirstOrDefault().Estado" type="text" class="form-control" placeholder="Ceará">
+    </div>
+
+    <button type="submit" class="btn btn-success">Editar</button>
+    <a asp-controller="Cliente" asp-action="Listar" type="button" class="btn btn-danger">Cancelar</a>
+</form>

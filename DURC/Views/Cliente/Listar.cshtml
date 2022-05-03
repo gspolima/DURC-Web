@@ -1,0 +1,50 @@
+﻿@model IEnumerable<DURC.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Listagem de Clientes";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<h2>Listagem de clientes</h2>
+<br>
+<table class="table table-hover table-responsive-sm">
+    <thead>
+        <tr class="table-info">
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Endereço</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Excluir</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <th scope="row">@item.Id</th>
+            <td>@item.Nome</td>
+            <td>@item.CPF</td>
+            <td>@item.Telefone</td>
+            <td>
+                @item.Enderecos.FirstOrDefault().Logradouro,
+                @item.Enderecos.FirstOrDefault().Numero -
+                @item.Enderecos.FirstOrDefault().Bairro,
+                @item.Enderecos.FirstOrDefault().Cidade -
+                @item.Enderecos.FirstOrDefault().Estado
+            </td>
+            <td>
+                <a class="btn btn-outline-warning" asp-controller="Cliente" asp-action="Editar" asp-route-id="@item.Id">✏</a>
+            </td>
+            <td>
+                <a class="btn btn-outline-danger" asp-controller="Cliente" asp-action="Deletar" asp-route-id="@item.Id">🗑</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <button class="btn btn-primary" asp-controller="Cliente" asp-action="Cadastrar">Novo Cliente</button>
+</div>
