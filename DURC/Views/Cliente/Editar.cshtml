@@ -1,7 +1,7 @@
 ﻿@model DURC.Models.Cliente
 
 @{
-    ViewData["Title"] = "Editar Cliente";
+    ViewData["Title"] = "Editar";
     Layout = "~/Views/Shared/_layout.cshtml";
 }
 
@@ -49,6 +49,6 @@
         <input asp-for="Enderecos.FirstOrDefault().Estado" type="text" class="form-control" placeholder="Ceará">
     </div>
 
-    <button type="submit" class="btn btn-success">Editar</button>
-    <a asp-controller="Cliente" asp-action="Listar" type="button" class="btn btn-danger">Cancelar</a>
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a asp-controller="Cliente" asp-action="Listar" type="button" class="btn btn-danger">Descartar Alterações</a>
 </form>

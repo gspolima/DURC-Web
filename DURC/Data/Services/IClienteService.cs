@@ -10,6 +10,7 @@ namespace DURC.Data.Services
     {
         IEnumerable<Cliente> GetAll();
         Cliente GetClientePorId(int id);
+        bool Create(Cliente cliente);
         bool Update(Cliente cliente);
         bool Delete(int id);
     }

@@ -54,6 +54,12 @@ namespace DURC.Data.Services
             return cliente;
         }
 
+        public bool Create(Cliente cliente)
+        {
+            DbContext.Clientes.Add(cliente);
+            return DbContext.SaveChanges() > 0 ? true : false;
+        }
+
         public bool Update(Cliente cliente)
         {
             var existe = DbContext.Clientes
@@ -62,7 +68,7 @@ namespace DURC.Data.Services
             if (existe)
             {
                 DbContext.Clientes.Update(cliente);
-                return DbContext.SaveChanges() == 1 ? true : false;
+                return DbContext.SaveChanges() > 0 ? true : false;
             }
 
             return false;
@@ -75,9 +81,12 @@ namespace DURC.Data.Services
 
             if (existe)
             {
-                var cliente = DbContext.Clientes.Where(c => c.Id == id).FirstOrDefault();
+                var cliente = DbContext.Clientes
+                    .Where(c => c.Id == id)
+                    .FirstOrDefault();
+
                 DbContext.Clientes.Remove(cliente);
-                return DbContext.SaveChanges() == 1 ? true : false;
+                return DbContext.SaveChanges() > 0 ? true : false;
             }
 
             return false;
