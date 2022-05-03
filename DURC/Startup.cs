@@ -30,7 +30,7 @@ namespace DURC
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration.GetConnectionString("MySql");
-            var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
+            var serverVersion = new MySqlServerVersion(new Version(8, 0));
 
             services.AddDbContext<ApplicationDbContext>(
                 options => options
