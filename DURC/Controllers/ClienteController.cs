@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
+using OpenHtmlToPdf;
 
 namespace DURC.Controllers
 {
@@ -89,6 +91,23 @@ namespace DURC.Controllers
                 return RedirectToAction("Listar", "Cliente");
             
             return NotFound("Cliente já foi excluído!");
+        }
+
+        public IActionResult ExportarParaPDF()
+        {
+            var clientes = ClienteService.GetAll();
+
+            var html = File.ReadAllText("../htmlReport.html");
+            var pdf = OpenHtmlToPdf.Pdf
+                .From(html)
+                .OfSize(PaperSize.A4)
+                .WithMargins(0.Centimeters())
+                .Landscape()
+                .Content();
+
+            var file = File.WriteAllBytes("report.pdf", pdf);
+
+            return View();
         }
     }
 }
